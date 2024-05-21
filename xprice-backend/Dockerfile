@@ -2,7 +2,7 @@
 FROM openjdk:21-slim AS builder
 WORKDIR /opt/app
 COPY . /opt/app
-RUN chmod +x ./mvnw && ./mvnw package -DskipTests
+RUN chmod +x ./mvnw && ./mvnw package
 
 # Runtime image
 FROM openjdk:21-slim as final

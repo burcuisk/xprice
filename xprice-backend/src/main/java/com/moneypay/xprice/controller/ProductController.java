@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@Tag(name = "Price Controller", description = "Operations related to products")
+@Tag(name = "Product Controller", description = "Operations related to products")
 public class ProductController {
 
    @Autowired
