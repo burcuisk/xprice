@@ -16,7 +16,6 @@ public class RedisConfiguration extends CachingConfigurerSupport {
     public RedisTemplate<Long, Product> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<Long, Product> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
-        // Add some specific configuration here. Key serializers, etc.
         return template;
     }
 

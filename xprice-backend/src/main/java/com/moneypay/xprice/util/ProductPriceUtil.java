@@ -4,7 +4,7 @@ import com.moneypay.xprice.data.ProductPrice;
 
 import java.util.List;
 
-import static com.moneypay.xprice.constant.Constants.PRODUCT_PRICE_PAGE_SIZE;
+import static com.moneypay.xprice.constant.PaginationConstants.PRODUCT_PRICE_PAGE_SIZE;
 
 public class ProductPriceUtil {
 

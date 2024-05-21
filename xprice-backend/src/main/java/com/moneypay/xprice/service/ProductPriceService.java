@@ -1,11 +1,10 @@
 package com.moneypay.xprice.service;
 
-import com.moneypay.xprice.data.ProductPrice;
 import com.moneypay.xprice.data.model.CategoryPage;
 import com.moneypay.xprice.data.model.RedisProduct;
 import com.moneypay.xprice.enums.ThirdPartyService;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ProductPriceService {
@@ -38,7 +37,7 @@ public interface ProductPriceService {
      * @param productId the ID of the product
      * @return a list of collected product prices
      */
-    RedisProduct collectPrices(UUID productId);
+    Optional<RedisProduct> collectPrices(UUID productId);
 
     void collectPrices(ThirdPartyService thirdPartyService, CategoryPage categoryPage);
 }

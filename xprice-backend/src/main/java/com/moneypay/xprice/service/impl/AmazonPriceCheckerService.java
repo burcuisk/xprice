@@ -10,7 +10,7 @@ public class AmazonPriceCheckerService implements ThirdPartyPriceCheckerService 
 
     @Override
     public boolean supports(ThirdPartyService thirdPartyService) {
-        return thirdPartyService == ThirdPartyService.AMAZON;
+        return ThirdPartyService.AMAZON.equals(thirdPartyService);
     }
 
     @Override

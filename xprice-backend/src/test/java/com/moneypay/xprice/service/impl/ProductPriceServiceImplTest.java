@@ -56,13 +56,13 @@ public class ProductPriceServiceImplTest {
         when(redisProductService.findRedisProduct(productId)).thenReturn(Optional.ofNullable(redisProductResponse));
 
         // ACTION
-        RedisProduct redisProduct = productPriceService.collectPrices(productId);
+        Optional<RedisProduct> redisProduct = productPriceService.collectPrices(productId);
 
         // VERIFICATION
         verify(categoryPagesService, times(1)).findCategoryPages(productId);
         verify(thirdPartyPriceCheckerFactory, times(1)).getService(ThirdPartyService.TRENDYOL);
         verify(redisProductService).findRedisProduct(productId);
-        assertNotNull(redisProduct);
+        assertTrue(redisProduct.isPresent());
     }
 
 }

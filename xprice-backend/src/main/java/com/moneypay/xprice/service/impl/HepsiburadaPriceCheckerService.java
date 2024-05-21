@@ -37,7 +37,7 @@ public class HepsiburadaPriceCheckerService implements ThirdPartyPriceCheckerSer
 
     @Override
     public boolean supports(ThirdPartyService thirdPartyService) {
-        return thirdPartyService == ThirdPartyService.HEPSIBURADA;
+        return ThirdPartyService.HEPSIBURADA.equals(thirdPartyService);
     }
 
     @Override

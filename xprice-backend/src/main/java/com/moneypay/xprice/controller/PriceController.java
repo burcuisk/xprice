@@ -26,34 +26,30 @@ public class PriceController {
     @GetMapping("/{productId}/{page}")
     @Operation(summary = "Get product prices", description = "Retrieves a paginated list of prices for a given product with default page size(15)")
     public ResponseEntity<ProductPriceListResponse> getProductPrices(@PathVariable UUID productId, @PathVariable int page) throws ProductNotFoundException {
-        RedisProduct result;
-        if (!productPriceService.checkCollectionRequired(productId)) {
-            result = productPriceService.getProductPrices(productId);
-        } else {
-            result = productPriceService.collectPrices(productId);
-        }
-        return ResponseEntity.ok(
-                ProductPriceListResponse.builder()
-                        .totalCount(result.getPriceList().size())
-                        .prices(getPageableProductList(page, result.getPriceList()))
-                        .page(page)
-                        .lastUpdatedTime(result.getLastUpdatedTime())
-                        .build()
+
+        RedisProduct result = productPriceService.getProductPrices(productId);
+
+        ProductPriceListResponse response = new ProductPriceListResponse(
+                result.getLastUpdatedTime(),
+                result.getPriceList().size(),
+                getPageableProductList(page, result.getPriceList()),
+                page
         );
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/refresh")
     @Operation(summary = "Refresh product prices", description = "Refreshes prices for a given product by collecting new prices from websites")
     public ResponseEntity<ProductPriceListResponse> refreshPrices(@RequestBody RefreshProductPriceRequest productPriceRequest,
                                                                   @RequestParam(defaultValue = "0") int page) throws ProductNotFoundException {
-        RedisProduct result = productPriceService.refreshProductPrices(productPriceRequest.getProductId());
-        return ResponseEntity.ok(
-                ProductPriceListResponse.builder()
-                        .totalCount(result.getPriceList().size())
-                        .prices(getPageableProductList(page, result.getPriceList()))
-                        .page(page)
-                        .lastUpdatedTime(result.getLastUpdatedTime())
-                        .build()
+        RedisProduct result = productPriceService.refreshProductPrices(productPriceRequest.productId());
+
+        ProductPriceListResponse response = new ProductPriceListResponse(
+                result.getLastUpdatedTime(),
+                result.getPriceList().size(),
+                getPageableProductList(page, result.getPriceList()),
+                page
         );
+        return ResponseEntity.ok(response);
     }
 }

@@ -42,7 +42,7 @@ public class TrendyolPriceCheckerService implements ThirdPartyPriceCheckerServic
 
     @Override
     public boolean supports(ThirdPartyService thirdPartyService) {
-        return thirdPartyService == ThirdPartyService.TRENDYOL;
+        return ThirdPartyService.TRENDYOL.equals(thirdPartyService);
     }
 
     @Override
@@ -54,6 +54,7 @@ public class TrendyolPriceCheckerService implements ThirdPartyPriceCheckerServic
         try {
             trendyolResponse = objectMapper.readValue(responseBody, TrendyolResponse.class);
         } catch (JsonProcessingException e) {
+            log.error("Error while processing JSON response: {}", e.getMessage());
             throw new RuntimeException(e);
         }
         List<ProductPrice> prices = new ArrayList<>();
@@ -65,6 +66,8 @@ public class TrendyolPriceCheckerService implements ThirdPartyPriceCheckerServic
                     .thirdPartyService(ThirdPartyService.TRENDYOL)
                     .build());
         });
+
+        log.debug("Found {} prices for category page: {}", prices.size(), categoryPage.getUrl());
 
         if(prices.size() > 0) {
             redisProductService.addPricesToProduct(categoryPage.getProduct().getId(), prices);
