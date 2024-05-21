@@ -5,7 +5,7 @@ XPrice is an app that fetches product prices from e-commerce websites and displa
 - **Postgres**: Used for storing persistent data such as product names and e-commerce category links.
 - **Redis**: Used as a cache to store lists of product prices.
 - **React**: Used on the frontend.
-- **Spring**: Used on the backend and for the API.
+- **Java 21 - Spring Boot 3.2.5**: Used on the backend and for the API.
   
 ## Installation
 
