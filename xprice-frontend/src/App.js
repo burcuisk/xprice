@@ -103,17 +103,17 @@ function App() {
                  </FormControl>
                  </Grid>
              <Grid item xs={2}>
-                <Button onClick={handleGetPrices} size="large" variant="contained">GET PRICES</Button>
+                <Button onClick={handleGetPrices} style={{backgroundColor:'#655c5c', marginTop:5}} size="large" variant="contained">GET PRICES</Button>
              </Grid>
-             <Grid item xs={4}>
-                  Last updated date: {productPrices.lastUpdatedTime}
+             <Grid item xs={4} style={{marginTop:8}}>
+                  <b>Last updated date:</b> {productPrices.lastUpdatedTime}
               </Grid>
               <Grid item xs={2}>
                   <Button disabled={!selectedProduct} onClick={handleRefresh} size="large" variant="contained">REFRESH</Button>
               </Grid>
         </Grid>
 
-        <TableContainer component={Paper} style={{padding:50}}>
+        <TableContainer component={Paper} style={{padding:50, marginTop:10, width:'97%'}}>
               <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
@@ -129,7 +129,7 @@ function App() {
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell align="left">{productPrice.thirdPartyService}</TableCell>
-                      <TableCell align="left"><a href={productPrice.url} target="_blank">{productPrice.url}</a></TableCell>
+                      <TableCell align="left"><a href={productPrice.url} target="_blank" style={{ fontSize: '12px' }}>{productPrice.url}</a></TableCell>
                       <TableCell align="left">{productPrice.price}</TableCell>
                     </TableRow>
                   ))}
