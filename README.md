@@ -20,9 +20,6 @@ http://localhost:3000
 Access the swagger api documentation and usage at: 
 http://localhost:8080/swagger-ui/index.html
 
-Access the frontend in your browser at:
-http://localhost:3000
-
 
 ## Limitations
 - The current codebase uses mock data instead of scraping. However, a developer can implement a `ScraperService` to enable real scraping for each website.
